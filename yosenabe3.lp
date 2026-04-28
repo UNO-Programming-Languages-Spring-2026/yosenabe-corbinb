@@ -21,5 +21,6 @@ path(X,Y,NX,Y) :- target(X,Y,XX,Y), number(X,Y,N), cell(NX,Y), XX <= NX, NX <= X
 path(X,Y,X,NY) :- target(X,Y,X,YY), number(X,Y,N), cell(X,NY), Y <= NY, NY <= YY.
 path(X,Y,X,NY) :- target(X,Y,X,YY), number(X,Y,N), cell(X,NY), YY <= NY, NY <= Y.
 %generate all paths
+:- path(X1,Y1,CX,CY), path(X2,Y2,CX,CY), (X1,Y1) != (X2,Y2).
 %two numbers cannot cross when moving
 #show target/4.
