@@ -16,9 +16,10 @@ has_number(A) :- target(X,Y,XX,YY), area(XX,YY,A).
 %achieved: every area must have at least one number
 :-target(X1,Y1,XX,YY),target(X2,Y2,XX,YY),X1!=X2,Y1!=Y2.
 %Two targets cannot end in the same cell
-:-target(X,Y1,X,YY),target(X2,Y,XX,Y),Y1<=Y,Y<=YY,X2<=X,X<=XX.
-:-target(X,Y1,X,YY),target(X2,Y,XX,Y),Y1>=Y,Y>=YY,X2>=X,X>=XX.
-:-target(X,Y1,X,YY),target(X2,Y,XX,Y),Y1<=Y,Y<=YY,X2>=X,X>=XX.
-:-target(X,Y1,X,YY),target(X2,Y,XX,Y),Y1>=Y,Y>=YY,X2<=X,X<=XX.
+path(X,Y,NX,Y) :- target(X,Y,XX,Y), number(X,Y,N), cell(NX,Y), X <= NX, NX <= XX.
+path(X,Y,NX,Y) :- target(X,Y,XX,Y), number(X,Y,N), cell(NX,Y), XX <= NX, NX <= X.
+path(X,Y,X,NY) :- target(X,Y,X,YY), number(X,Y,N), cell(X,NY), Y <= NY, NY <= YY.
+path(X,Y,X,NY) :- target(X,Y,X,YY), number(X,Y,N), cell(X,NY), YY <= NY, NY <= Y.
+%generate all paths
 %two numbers cannot cross when moving
 #show target/4.
